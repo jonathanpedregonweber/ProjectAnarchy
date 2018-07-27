@@ -31,3 +31,11 @@ What are the code standards for the interface, how are they enforced?
     Tabs, not spaces
     Curly braces on new line.
     Importing classes
+
+5 Message Type
+
+    Start
+    Chat
+    Move
+    Hit/Miss
+    Win
