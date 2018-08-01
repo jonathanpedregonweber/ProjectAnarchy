@@ -2,10 +2,6 @@ package projectanarchy;
 
 public class MessageFactory
 {
-	public void sendChat()
-	{
-		
-	}
 	
 	public void sendHitMiss()
 	{
