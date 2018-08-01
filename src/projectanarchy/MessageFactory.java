@@ -3,9 +3,14 @@ package projectanarchy;
 public class MessageFactory
 {
 	
-	public void sendHitMiss()
+	public string sendHitMiss(int[] target)
 	{
+		if (target == shipLocation)
+		{
+			return "hit";
+		}
 		
+		return "miss";
 	}
 	
 	public void sendMove()
