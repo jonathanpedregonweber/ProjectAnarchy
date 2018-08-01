@@ -6,6 +6,8 @@ import java.util.function.Consumer;
 import org.json.JSONWriter;
 
 public class MessageFactory {
+	final private static String module = "Battleship2"; // Not sure if this is correct.
+	
 	public static String sendHitMiss(int[] target) {
 		int shipLocation = 0;
 		if (target[0] == shipLocation) {
@@ -35,6 +37,16 @@ public class MessageFactory {
 		return stringWriter.toString();
 	}
 	
+	public static String application(String action) {
+		return json(writer -> {
+			writer.key("type").value("application");
+			writer.key("message");
+			writer.object();
+			writer.key("module").value(module);
+			writer.key("action").value(action);
+			writer.endObject();
+		});
+	}
 	
 	public static String chat(String message) {
 		return json(writer -> {
@@ -50,6 +62,7 @@ public class MessageFactory {
 			writer.key("username").value(username);
 		});
 	}
+	
 	public static String login(String username, String password) {
 		return json(writer -> {
 			writer.key("type").value("login");
