@@ -11,36 +11,36 @@ public class MessageFactory {
 	public static String sendHitMiss(int[] target) {
 		int shipLocation = 0;
 		if (target[0] == shipLocation) {
-			return "hit";
+			return  application("hit");
 		}
-		return "miss";
+		return application("miss");
 	}
 	
-	public void sendMove() {
-		//
+	public static String sendMove() {
+		return application("move");
 	}
 	
-	public void sendStart() {
-		//
+	public static String sendStart() {
+		return application("start");
 	}
 	
-	public void sendWin() {
-		//
+	public static String sendWin() {
+		return application("win");
 	}
 	
-	private static String json(Consumer<JSONWriter> consumer) {
+	private static String json(String type, Consumer<JSONWriter> message) {
 		StringWriter stringWriter = new StringWriter();
 		JSONWriter writer = new JSONWriter(stringWriter);
 		writer.object();
-		consumer.accept(writer);
+		writer.key("type").value(type);
+		writer.key("message");
+		message.accept(writer);
 		writer.endObject();
 		return stringWriter.toString();
 	}
-	
-	public static String application(String action) {
-		return json(writer -> {
-			writer.key("type").value("application");
-			writer.key("message");
+
+	private static String application(String action) {
+		return json("application", writer -> {
 			writer.object();
 			writer.key("module").value(module);
 			writer.key("action").value(action);
@@ -49,24 +49,20 @@ public class MessageFactory {
 	}
 	
 	public static String chat(String message) {
-		return json(writer -> {
-			writer.key("type").value("chat");
-			writer.key("message").value(message);
+		return json("chat", writer -> {
+			writer.value(message);
 		});
 	}
 	
 	public static String chat(String message, String username) {
-		return json(writer -> {
-			writer.key("type").value("chat");
-			writer.key("message").value(message);
+		return json("chat", writer -> {
+			writer.value(message);
 			writer.key("username").value(username);
 		});
 	}
 	
 	public static String login(String username, String password) {
-		return json(writer -> {
-			writer.key("type").value("login");
-			writer.key("message");
+		return json("login", writer -> {
 			writer.object();
 			writer.key("username").value(username);
 			writer.key("password").value(password);
