@@ -1,0 +1,9 @@
+.idea/
+.settings/
+bin/
+build/
+out/
+.classpath
+.project
+student_chat1.iml
+/bin1/
