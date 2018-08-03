@@ -12,7 +12,7 @@ public class MessageFactory {
 	
 	public static Bool sendHitMiss(int x, int y) {
 
-		Bool HitMiss;
+		Bool HitMiss; // true for hit, false for miss
 		return HitMiss;
 	}
 	
