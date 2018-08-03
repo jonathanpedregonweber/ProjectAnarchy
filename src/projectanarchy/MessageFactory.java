@@ -3,6 +3,8 @@ package projectanarchy;
 import java.io.StringWriter;
 import java.util.function.Consumer;
 
+import org.json.JSONObject;
+import org.json.JSONTokener;
 import org.json.JSONWriter;
 
 public class MessageFactory {
@@ -11,7 +13,7 @@ public class MessageFactory {
 	public static String sendHitMiss(int[] target) {
 		int shipLocation = 0;
 		if (target[0] == shipLocation) {
-			return  application("hit");
+			return application("hit");
 		}
 		return application("miss");
 	}
@@ -38,7 +40,7 @@ public class MessageFactory {
 		writer.endObject();
 		return stringWriter.toString();
 	}
-
+	
 	private static String application(String action) {
 		return json("application", writer -> {
 			writer.object();
@@ -67,6 +69,20 @@ public class MessageFactory {
 			writer.key("username").value(username);
 			writer.key("password").value(password);
 			writer.endObject();
+		});
+	}
+	
+	public static MessageChat getChat(String json) {
+		JSONTokener tokener = new JSONTokener(json);
+		JSONObject object = new  JSONObject(tokener);
+		return new MessageChat(object);
+	}
+
+	public static String setChat(MessageChat chat) {
+		return json("chat", writer -> {
+			writer.value(chat.getMessage());
+			writer.key("username");
+			writer.value(chat.getUsername());
 		});
 	}
 }
