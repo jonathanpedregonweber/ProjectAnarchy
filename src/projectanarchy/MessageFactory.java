@@ -10,12 +10,10 @@ import org.json.JSONWriter;
 public class MessageFactory {
 	final private static String module = "Battleship2"; // Not sure if this is correct.
 	
-	public static String sendHitMiss(int[] target) {
-		int shipLocation = 0;
-		if (target[0] == shipLocation) {
-			return application("hit");
-		}
-		return application("miss");
+	public static Bool sendHitMiss(int x, int y) {
+
+		Bool HitMiss; // true for hit, false for miss
+		return HitMiss;
 	}
 	
 	public static String sendMove() {
