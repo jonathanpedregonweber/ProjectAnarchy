@@ -1,8 +1,10 @@
+import projectanarchy.models.WinMessage;
+
 public class Main
 {
-    public static void main(String[] args)
+	public static void main(String[] args)
     {
         WinMessage message = new WinMessage(true);
-        MessageFactory.
+        message.isWin();
     }
 }
