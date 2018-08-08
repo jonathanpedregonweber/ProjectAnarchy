@@ -39,3 +39,15 @@ What are the code standards for the interface, how are they enforced?
     Move
     Hit/Miss
     Win
+    
+When messages are sent
+   
+   Each client sends a Start message once the player has set their pieces.
+   First player sends a Move messages to the server.
+   Seconds player receives the Move message. The client determines whether it was a hit.
+   Second player sends a Hit message to the server.
+   First player receives Hit message and client displays a Hit or Miss prompt in the UI.
+   This process continues until a user receives a Move message that causes them to lose. At this point they will send a Win message to 
+   the server.
+   The winning player receives a win message and the UI tells them they've won.
+
